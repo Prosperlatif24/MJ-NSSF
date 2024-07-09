@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSSF savings calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width:100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: color #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>NSSF savings calculator</h2>
+    <form id="nssfcalculator">
+        <label for="age">current Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="yearsofwork">Years of work:</label>
+        <input type="number" id="yearsofwork" name="yearsofwork" required>
+
+
+        <label for="basicsalary">Basic Salary:</label>
+        <input type="number" id="basicsalary" name="basicsalary" required>
+
+        <button type="submit">calculate</button>
+    </form>
+
+    <div id="results" class="result">
+
+    </div>
+    <script>
+        function calculateNSSF(age,yearsofwork,basicsalary) {
+            const retirementAge = 55;
+
+            const nssfRate = 0.15; //15% contribution rate
+
+            const yearsToRetirement =retirementAge - age;
+
+        }const totalNSSF =yearsofwork *12 * (nssfRate * basicsalary);
+
+        return {
+            yearsToRetirement: yearsToRetirement,
+            totalNSSF: totalNSSF
+        };
+         // Handle form submission
+         document.getElementById('savingsForm').addEventListener('submit', function(event)  {
+            event.preventDefault();
+           
+            // Get form values
+            const age = parseInt(document.getElementById('age').value);
+            const yearsOfWork = parseInt(document.getElementById('yearsOfWork').value);
+            const basicSalary = parseFloat(document.getElementById('basicSalary').value);
+
+            // Calculate NSSF savings
+            const result = calculateNSSF(age, yearsOfWork, basicSalary);
+
+            // Display results
+            document.getElementById('yearsToRetirement').textContent = result.yearsToRetirement + ' years';
+            document.getElementById('totalNSSF').textContent = result.totalNSSF.toFixed(2); // Format totalNSSF as currency
+
+            // Show the result container
+            document.getElementById('resultContainer').style.display = 'block';
+         }
+    </script>
+</body>
+</html>
